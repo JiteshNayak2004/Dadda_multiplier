@@ -14,26 +14,23 @@ module testbench;
   reg clock = 0;
   always #5 clock = ~clock;
 
-  // Test input vectors
+  // Test all possible input vectors
   initial begin
     $dumpfile("sim.vcd"); // Specify the VCD file name
     $dumpvars(0, testbench); // Dump all variables in the testbench
-    $monitor("A=%b, B=%b, Product=%b", A, B, product);
-    A = 4'b0010; // Change input values as needed
-    B = 4'b0011;
 
-    // Simulate for some time
-    #50 $finish;
+    // Loop through all possible input combinations
+    for (A = 0; A < 16; A = A + 1) begin
+      for (B = 0; B < 16; B = B + 1) begin
+        $monitor("A=%b, B=%b, Product=%b", A, B, product);
+        #50; // Simulate for 50 time units
+      end
+    end
+
+    $finish;
   end
 
   // Clock generation
   always #1 clock = ~clock;
-
-  // Apply inputs
-  always @(posedge clock) begin
-    // Change input values as needed
-    A <= 4'b0101;
-    B <= 4'b1100;
-  end
 
 endmodule
