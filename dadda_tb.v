@@ -14,17 +14,20 @@ module testbench;
   reg clock = 0;
   always #5 clock = ~clock;
 
-  // Test all possible input vectors
+  // Test random input vectors
   initial begin
     $dumpfile("sim.vcd"); // Specify the VCD file name
     $dumpvars(0, testbench); // Dump all variables in the testbench
 
-    // Loop through all possible input combinations
-    for (A = 0; A < 16; A = A + 1) begin
-      for (B = 0; B < 16; B = B + 1) begin
-        $monitor("A=%b, B=%b, Product=%b", A, B, product);
-        #50; // Simulate for 50 time units
-      end
+    // Simulate for a number of random test cases
+    integer num_test_cases = 100; // You can change this to the desired number of test cases
+
+    repeat (num_test_cases) begin
+      A = $random;
+      B = $random;
+
+      $monitor("A=%b, B=%b, Product=%b", A, B, product);
+      #50; // Simulate for 50 time units
     end
 
     $finish;
