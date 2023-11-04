@@ -45,7 +45,6 @@ Drawbacks:
 <summary>physical design</summary>
 
 
-  **Hello and welcome to the Physical design of the 4 bit ring counter that is being implemented after the synthesis part we move to the physical design also known as RTL2GDSII flow.**
 
 # RTL2GDSII FLow (simplified)
 
@@ -290,7 +289,7 @@ to invoke openlane and run the ASIC flow that completes all the key aspects of R
 ```sh
 cd OpenLane
 make mount
-./flow.tcl -design <DESIGN NAME>  ## DESIGN NAME - here we are working with 4 bit ring_counter therefore our design name is gonna be ring_counter
+./flow.tcl -design <DESIGN NAME>  ## DESIGN NAME - here we are working with dadda_multiplier therefore our design name is gonna be dadda_multiplier
 ```
 
 Once we invoke OpenLane it should look same as shown below:
@@ -300,32 +299,24 @@ Once we invoke OpenLane it should look same as shown below:
 
 ## FLOORPLAN:
 
-before viewing the floorplan we first need to go to the directory where the ring_counter.def file for floorplan is created, we type the following command to locate the file:
+before viewing the floorplan we first need to go to the directory where the dadda_multiplier.def file for floorplan is created, we type the following command to locate the file:
 
 ```sh
-OpenLane/designs/ring_counter/runs/RUN_2023.11.02_15.20.00/results/floorplan
+OpenLane/designs/dadda_mulitplier/runs/RUN_2023.11.02_15.20.00/results/floorplan
 ```
 
 this will give us 2 files present in the floorplan after the **Successfull flow** as shown below:
 
-
-Now to open the ring_counter.def file for floorplan we use the help of the tool **MAGIC** to invoke this tool we type the following command:
-
-```sh
-magic -T /home/tawfeeq/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read
-```
-
-- the command should look similar to something shown below:
-
-
-
 now to view the floorplan we type the following command:
 
 ```sh
-magic -T /home/tawfeeq/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read ring_counter.def &
+magic -T /home/jitesh/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read dadda_mulitplier.def &
 ```
 
 - The floorplan is viewed in MAGIC as shown below:
+![floorplan](https://github.com/JiteshNayak2004/pes_dadda_multiplier/assets/117510555/6a48fcc5-9287-4357-bbac-49151d556805)
+
+![floorplan_zoomed](https://github.com/JiteshNayak2004/pes_dadda_multiplier/assets/117510555/1e1a2e46-8e90-4c76-99f6-6e3a257e2ff8)
 
 
 ## PLACEMENT:
@@ -333,32 +324,22 @@ magic -T /home/tawfeeq/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../
 similar to floorplan before viewing the placement we first need to go to the directory where the ring_counter.def file  for placement is created, we type the following command to locate the file:
 
 ```sh
-OpenLane/designs/ring_counter/runs/RUN_2023.11.02_15.20.00/results/placement
+OpenLane/designs/dadda_mulitplier/runs/RUN_2023.11.02_15.20.00/results/placement
 ```
 
 this will give us 4 files present in the placement after the **Successfull flow** as shown below:
-
-
-
-Now to open the ring_counter.def file for placement we use the help of the tool **MAGIC** to invoke this tool we type the following command:
-
-```sh
-magic -T /home/tawfeeq/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read
-```
-
-- the command should look similar to something shown below:
-
-
-
 now to view the placement we type the following command:
 
 ```sh
-magic -T /home/tawfeeq/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read ring_counter.def &
+magic -T /home/jitesh/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read dadda_mulitplier.def &
 ```
 
 - The Placement is viewed in MAGIC as shown below:
 
+![placement_unzoomed](https://github.com/JiteshNayak2004/pes_dadda_multiplier/assets/117510555/b44923d4-be22-47ca-ba0c-e8063f1568c8)
 
+
+![placement](https://github.com/JiteshNayak2004/pes_dadda_multiplier/assets/117510555/9ef5818c-9b0b-4bf0-bc28-7b80cf5a97b7)
 
 
 
@@ -370,22 +351,29 @@ magic -T /home/tawfeeq/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../
 similar to placement before viewing the CTS we first need to go to the directory where the ring_counter.def file  for CTS is created, we type the following command to locate the file:
 
 ```sh
-OpenLane/designs/ring_counter/runs/RUN_2023.11.02_15.20.00/results/cts
+OpenLane/designs/dadda_multiplier/runs/RUN_2023.11.02_15.20.00/results/cts
 ```
 
 this will give us 3 files present in the CTS after the **Successfull flow** as shown below:
+1. dadda_mulitplier.def
+2. dadda_mulitplier.odb
+3. dadda_mulitplier.sdc
+
+to view again we run the command
+```sh
+magic -T /home/jitesh/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read dadda_multiplier.def &
+```
+the cts viewed in magic is below
 
 
-
-
-
+![cts](https://github.com/JiteshNayak2004/pes_dadda_multiplier/assets/117510555/e0f0e3d4-1d6c-4706-ac19-86f8757c95de)
 
 
 
 
 ## ROUTING:
 
-similar to CTS before viewing the Routing we first need to go to the directory where the ring_counter.def file  for Routing is created, we type the following command to locate the file:
+similar to CTS before viewing the Routing we first need to go to the directory where the dadda_mulitplier.def file  for Routing is created, we type the following command to locate the file:
 
 ```sh
 OpenLane/designs/ring_counter/runs/RUN_2023.11.02_15.20.00/results/routing
@@ -394,20 +382,15 @@ OpenLane/designs/ring_counter/runs/RUN_2023.11.02_15.20.00/results/routing
 this will give us 4 files present in the Routing after the **Successfull flow** as shown below:
 
 
-
-Now to open the ring_counter.def file for Routing we use the help of the tool **MAGIC** to invoke this tool we type the following command:
-
-```sh
-magic -T /home/tawfeeq/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read
-```
-
 now to view the CTS we type the following command:
 
 ```sh
-magic -T /home/tawfeeq/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read ring_counter.def &
+magic -T /home/jitesh/.volare/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read dadda_multiplier.def &
 ```
 
 - The Routing is viewed in MAGIC as shown below:
+![routing](https://github.com/JiteshNayak2004/pes_dadda_multiplier/assets/117510555/6819bd65-7048-4378-b950-6e2eb285d464)
+![routing_zoomed](https://github.com/JiteshNayak2004/pes_dadda_multiplier/assets/117510555/41ea97cc-f5aa-4b18-8968-d7fd8ac915c6)
 
 
 </details>
