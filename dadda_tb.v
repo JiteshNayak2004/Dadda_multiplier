@@ -2,6 +2,7 @@ module testbench;
   reg [3:0] A;
   reg [3:0] B;
   wire [7:0] product;
+  integer test_count;
 
   // Instantiate the Dadda Multiplier
   dadda_multiplier dut (
@@ -10,30 +11,25 @@ module testbench;
     .product(product)
   );
 
-  // Generate clock signal
+  // Clock generation
   reg clock = 0;
   always #5 clock = ~clock;
 
-  // Test random input vectors
+  // Testbench stimulus
   initial begin
     $dumpfile("sim.vcd"); // Specify the VCD file name
     $dumpvars(0, testbench); // Dump all variables in the testbench
 
-    // Simulate for a number of random test cases
-    integer num_test_cases = 100; // You can change this to the desired number of test cases
+    test_count = 16; // You can change this to the desired number of test cases
 
-    repeat (num_test_cases) begin
+    repeat (test_count) begin
       A = $random;
       B = $random;
-
-      $monitor("A=%b, B=%b, Product=%b", A, B, product);
-      #50; // Simulate for 50 time units
+      #10; // Allow some time for the signals to stabilize
+      $display("Test case %0d: A = %4h, B = %4h, Product = %8h", test_count, A, B, product);
     end
 
     $finish;
   end
-
-  // Clock generation
-  always #1 clock = ~clock;
-
 endmodule
+
