@@ -1,4 +1,4 @@
-# pes_dadda_multiplier
+# Dadda_multiplier
 <details>
 <summary> about the block </summary>
   
