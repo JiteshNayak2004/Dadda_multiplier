@@ -3,11 +3,15 @@
 <summary> about the block </summary>
   
 ## intro 
-A Dadda Multiplier, also known as the Dadda Tree Multiplier, is a high-speed digital circuit used for multiplying two binary numbers. Named after its inventor T.C. Dadda, this multiplication algorithm and architecture were introduced in the 1960s. Dadda Multipliers are known for their efficiency in terms of both speed and hardware resources when compared to other multiplication techniques, such as the traditional long multiplication method.
+A Dadda Multiplier, also known as the Dadda Tree Multiplier, is a high-speed digital circuit used for multiplying two binary numbers. 
 
+## brief operation
+
+- The Dadda Multiplier operates on a divide-and-conquer principle.
+- suppose we want to multiply two n bit no's what we first do is normal multiplication and get partial products
+- then we combine these partial products using a reduction tree which condenses everything into 2 arrays of 2n bits
+- then we use a cla to compute the final addition 
 ## detailed operation
-
-The Dadda Multiplier operates on a divide-and-conquer principle. It breaks down the multiplication into a series of partial products and then combines these partial products to yield the final result. This technique significantly reduces the number of full adders needed for the multiplication, making it an attractive choice for hardware designers looking to optimize speed and resource utilization.
 
 1. Partial Product Generation:
 To generate partial products, the Dadda Multiplier shifts one of the binary numbers (usually the multiplicand) and then selects the appropriate bits to generate a series of partial products. Each partial product corresponds to a '1' bit in the shifted multiplier. The Dadda Multiplier uses a combination of AND and XOR gates to calculate these partial products.
